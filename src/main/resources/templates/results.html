@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>2023 Telangana Election Results</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+	<style>
+		/* Custom styling for the span tag */
+		.custom-brs {
+			background-color: pink;
+
+			padding: 5px;
+			/* Optional: Add padding for better visual appearance */
+		}
+
+		.custom-inc {
+			background-color: blue;
+			color: white;
+			padding: 5px;
+			/* Optional: Add padding for better visual appearance */
+
+		}
+
+		.custom-bjp {
+			background-color: orange;
+			padding: 5px;
+			/* Optional: Add padding for better visual appearance */
+		}
+
+		.custom-mim {
+			background-color: green;
+			color: white;
+			padding: 5px;
+			/* Optional: Add padding for better visual appearance */
+		}
+
+		.custom-oth {
+			background-color: grey;
+			padding: 5px;
+			/* Optional: Add padding for better visual appearance */
+		}
+
+		.custom-empty {
+			background-color: white;
+			padding: 5px;
+			/* Optional: Add padding for better visual appearance */
+		}
+
+		.box {
+			box-shadow: 5px 15px 10px #888888;
+			/* 2px width, dotted style, black color */
+			margin-bottom: 5px
+		}
+
+		.progress-bar-segment {
+			height: 100%;
+			border-radius: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #fff;
+			/* Text color */
+		}
+
+		.prgs {
+			height: 3rem;
+			font-size: 1.5rem;
+			box-shadow: 5px 15px 10px #888888;
+			/* 2px width, dotted style, black color */
+			margin-bottom: 15px
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">2023 Telangana Election Results</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+
+	</nav>
+	<small th:text="${lastUpdated}" class="lead text-success align-self-end"></small>
+	
+	<div class="container-xxl m-2 justify-content-center">
+		<div class="prgs progress">
+			<!-- Set bg-* classes based on percentage -->
+			<div class="progress-bar progress-bar-segment custom-bjp" th:style="${BJPPercent}"><span
+					th:text="${BJPLabel}" /> </div>
+			<div class="progress-bar progress-bar-segment custom-brs" th:style="${BRSPercent}"><span
+					th:text="${BRSLabel}" /></div>
+			<div class="progress-bar progress-bar-segment custom-inc" th:style="${INCPercent}"><span
+					th:text="${INCLabel}" /></div>
+			<div class="progress-bar progress-bar-segment custom-mim" th:style="${MIMPercent}"><span
+					th:text="${MIMLabel}" /></div>
+			<div class="progress-bar progress-bar-segment custom-oth" th:style="${OTHPercent}"><span
+					th:text="${OTHLabel}" /></div>
+
+		</div>
+	</div>
+
+	<div class="container-xxl m-2 justify-content-center">
+		<div class="row">
+			<div class="col h3">Adilabad</div>
+			<div class="col h3">Hyderabad</div>
+			<div class="col h3">Karimnagar</div>
+			<div class="col h3">Khammam</div>
+			<div class="col h3">Mahabubnagar</div>
+			<div class="col h3">Medak</div>
+			<div class="col h3">Nalgonda</div>
+			<div class="col h3">Nizamabad</div>
+			<div class="col h3">Ranga Reddy</div>
+			<div class="col h3">Warangal</div>
+			<div class="w-100"></div>
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<div th:if="${constituency.lastName == 'Adilabad'}">
+						<div th:if="${constituency.won == 'BRS' or constituency.lead == 'BRS'}"
+							class="col-md-auto  box custom-brs">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'INC' or constituency.lead == 'INC'}"
+							class="col-md-auto  box custom-inc">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'BJP' or constituency.lead == 'BJP'}"
+							class="col-md-auto  box custom-bjp">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'MIM' or constituency.lead == 'MIM'}"
+							class="col-md-auto  box custom-mim">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'OTH' or constituency.lead == 'OTH'}"
+							class="col-md-auto  box custom-oth">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == '' and constituency.lead == ''}"
+							class="col-md-auto  box custom-empty">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+
+					</div>
+				</span>
+			</div>
+
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Hyderabad'}">
+						<div th:if="${constituency.won == 'BRS' or constituency.lead == 'BRS'}"
+							class="col-md-auto  box custom-brs">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'INC' or constituency.lead == 'INC'}"
+							class="col-md-auto  box custom-inc">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'BJP' or constituency.lead == 'BJP'}"
+							class="col-md-auto  box custom-bjp">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'MIM' or constituency.lead == 'MIM'}"
+							class="col-md-auto  box custom-mim">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'OTH' or constituency.lead == 'OTH'}"
+							class="col-md-auto  box custom-oth">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == '' and constituency.lead == ''}"
+							class="col-md-auto  box custom-empty">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+					</span>
+				</span>
+			</div>
+
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Karimnagar'}">
+						<div th:if="${constituency.won == 'BRS' or constituency.lead == 'BRS'}"
+							class="col-md-auto  box custom-brs">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'INC' or constituency.lead == 'INC'}"
+							class="col-md-auto  box custom-inc">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'BJP' or constituency.lead == 'BJP'}"
+							class="col-md-auto  box custom-bjp">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'MIM' or constituency.lead == 'MIM'}"
+							class="col-md-auto  box custom-mim">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'OTH' or constituency.lead == 'OTH'}"
+							class="col-md-auto  box custom-oth">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == '' and constituency.lead == ''}"
+							class="col-md-auto  box custom-empty">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+					</span>
+			</div>
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Khammam'}">
+						<div th:if="${constituency.won == 'BRS' or constituency.lead == 'BRS'}"
+							class="col-md-auto  box custom-brs">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'INC' or constituency.lead == 'INC'}"
+							class="col-md-auto  box custom-inc">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'BJP' or constituency.lead == 'BJP'}"
+							class="col-md-auto  box custom-bjp">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'MIM' or constituency.lead == 'MIM'}"
+							class="col-md-auto  box custom-mim">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'OTH' or constituency.lead == 'OTH'}"
+							class="col-md-auto  box custom-oth">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == '' and constituency.lead == ''}"
+							class="col-md-auto  box custom-empty">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+					</span>
+			</div>
+
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Mahabubnagar'}">
+						<div th:if="${constituency.won == 'BRS' or constituency.lead == 'BRS'}"
+							class="col-md-auto  box custom-brs">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'INC' or constituency.lead == 'INC'}"
+							class="col-md-auto  box custom-inc">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'BJP' or constituency.lead == 'BJP'}"
+							class="col-md-auto  box custom-bjp">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'MIM' or constituency.lead == 'MIM'}"
+							class="col-md-auto  box custom-mim">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'OTH' or constituency.lead == 'OTH'}"
+							class="col-md-auto  box custom-oth">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == '' and constituency.lead == ''}"
+							class="col-md-auto  box custom-empty">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+					</span>
+			</div>
+
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Medak'}">
+						<div th:if="${constituency.won == 'BRS' or constituency.lead == 'BRS'}"
+							class="col-md-auto  box custom-brs">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'INC' or constituency.lead == 'INC'}"
+							class="col-md-auto  box custom-inc">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'BJP' or constituency.lead == 'BJP'}"
+							class="col-md-auto  box custom-bjp">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'MIM' or constituency.lead == 'MIM'}"
+							class="col-md-auto  box custom-mim">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'OTH' or constituency.lead == 'OTH'}"
+							class="col-md-auto  box custom-oth">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == '' and constituency.lead == ''}"
+							class="col-md-auto  box custom-empty">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+
+					</span>
+			</div>
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Nalgonda'}">
+						<div th:if="${constituency.won == 'BRS' or constituency.lead == 'BRS'}"
+							class="col-md-auto  box custom-brs">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'INC' or constituency.lead == 'INC'}"
+							class="col-md-auto  box custom-inc">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'BJP' or constituency.lead == 'BJP'}"
+							class="col-md-auto  box custom-bjp">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'MIM' or constituency.lead == 'MIM'}"
+							class="col-md-auto  box custom-mim">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'OTH' or constituency.lead == 'OTH'}"
+							class="col-md-auto  box custom-oth">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == '' and constituency.lead == ''}"
+							class="col-md-auto  box custom-empty">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+
+					</span>
+			</div>
+
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Nizamabad'}">
+						<div th:if="${constituency.won == 'BRS' or constituency.lead == 'BRS'}"
+							class="col-md-auto  box custom-brs">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'INC' or constituency.lead == 'INC'}"
+							class="col-md-auto  box custom-inc">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'BJP' or constituency.lead == 'BJP'}"
+							class="col-md-auto  box custom-bjp">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'MIM' or constituency.lead == 'MIM'}"
+							class="col-md-auto  box custom-mim">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'OTH' or constituency.lead == 'OTH'}"
+							class="col-md-auto  box custom-oth">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == '' and constituency.lead == ''}"
+							class="col-md-auto  box custom-empty">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+					</span>
+			</div>
+
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Ranga Reddy'}">
+						<div th:if="${constituency.won == 'BRS' or constituency.lead == 'BRS'}"
+							class="col-md-auto  box custom-brs">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'INC' or constituency.lead == 'INC'}"
+							class="col-md-auto  box custom-inc">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'BJP' or constituency.lead == 'BJP'}"
+							class="col-md-auto  box custom-bjp">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'MIM' or constituency.lead == 'MIM'}"
+							class="col-md-auto  box custom-mim">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'OTH' or constituency.lead == 'OTH'}"
+							class="col-md-auto  box custom-oth">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == '' and constituency.lead == ''}"
+							class="col-md-auto  box custom-empty">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+
+					</span>
+			</div>
+
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Warangal'}">
+						<div th:if="${constituency.won == 'BRS' or constituency.lead == 'BRS'}"
+							class="col-md-auto  box custom-brs">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'INC' or constituency.lead == 'INC'}"
+							class="col-md-auto  box custom-inc">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'BJP' or constituency.lead == 'BJP'}"
+							class="col-md-auto  box custom-bjp">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'MIM' or constituency.lead == 'MIM'}"
+							class="col-md-auto  box custom-mim">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+						<div th:if="${constituency.won == 'OTH' or constituency.lead == 'OTH'}"
+							class="col-md-auto  box custom-oth">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+
+						<div th:if="${constituency.won == '' and constituency.lead == ''}"
+							class="col-md-auto  box custom-empty">
+							<b><span class="list-inline-item " th:text="${constituency.name}"></span> </b><span
+								th:text="${constituency.message}"></span>
+						</div>
+
+					</span>
+				</span>
+			</div>
+		</div>
+
+
+
+
+	</div>
+
+	
+
+	<div class="d-flex justify-content-center">
+		<span th:each="message: ${messages}">
+			<span th:text="${message}" class="display-4 text-center"></span> <span class="display-4">..</span>
+		</span>
+
+	</div>
+	
+	
+	
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>2023 Telangana Election Results</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">2023 Telangana Election Results</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/home}">Constituency Management</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" th:href="@{/home}">Teacher Management</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container-xxl">
+		<div class="row">
+			<div class="col">Adilabad</div>
+			<div class="col">Hyderabad</div>
+			<div class="col">Karimnagar</div>
+			<div class="col">Khammam</div>
+			<div class="col">Mahabubnagar</div>
+			<div class="col">Medak</div>
+			<div class="col">Nalgonda</div>
+			<div class="col">Nizamabad</div>
+			<div class="col">Ranga Reddy</div>
+			<div class="col">Warangal</div>
+			<div class="w-100"></div>
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Adilabad'}">
+						<span class="list-inline-item" th:text="${constituency.name}"></span> L-<b><span th:text="${constituency.lead}"></span></b> W-<b><span th:text="${constituency.won}"></b>
+						<br/>
+						<span>Lead
+							<a th:href="@{/home/lead/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/lead/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/lead/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/lead/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/lead/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+						<span>Won
+
+							<a th:href="@{/home/won/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/won/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/won/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/won/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/won/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+
+					</span>
+				</span>
+			</div>
+
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Hyderabad'}">
+						<span class="list-inline-item" th:text="${constituency.name}"></span> L-<b><span th:text="${constituency.lead}"></span></b> W-<b><span th:text="${constituency.won}"></b>
+						<br/>
+						<span>Lead
+							<a th:href="@{/home/lead/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/lead/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/lead/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/lead/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/lead/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+						<span>Won
+
+							<a th:href="@{/home/won/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/won/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/won/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/won/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/won/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+					</span>
+				</span>
+			</div>
+
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Karimnagar'}">
+						<span class="list-inline-item" th:text="${constituency.name}"></span> L-<b><span th:text="${constituency.lead}"></span></b> W-<b><span th:text="${constituency.won}"></b>
+						<br/><span>Lead
+							<a th:href="@{/home/lead/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/lead/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/lead/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/lead/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/lead/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+						<span>Won
+
+							<a th:href="@{/home/won/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/won/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/won/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/won/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/won/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+				</span>
+			</div>
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Khammam'}">
+						<span class="list-inline-item" th:text="${constituency.name}"></span> L-<b><span th:text="${constituency.lead}"></span></b> W-<b><span th:text="${constituency.won}"></b>
+						<br/><span>Lead
+							<a th:href="@{/home/lead/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/lead/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/lead/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/lead/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/lead/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+						<span>Won
+
+							<a th:href="@{/home/won/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/won/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/won/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/won/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/won/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+				</span>
+			</div>
+
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Mahabubnagar'}">
+						<span class="list-inline-item" th:text="${constituency.name}"></span> L-<b><span th:text="${constituency.lead}"></span></b> W-<b><span th:text="${constituency.won}"></b>
+						<br/><span>Lead
+							<a th:href="@{/home/lead/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/lead/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/lead/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/lead/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/lead/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+						<span>Won
+
+							<a th:href="@{/home/won/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/won/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/won/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/won/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/won/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+				</span>
+			</div>
+
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Medak'}">
+						<span class="list-inline-item" th:text="${constituency.name}"></span> L-<b><span th:text="${constituency.lead}"></span></b> W-<b><span th:text="${constituency.won}"></b>
+						<br/><span>Lead
+							<a th:href="@{/home/lead/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/lead/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/lead/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/lead/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/lead/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+						<span>Won
+
+							<a th:href="@{/home/won/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/won/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/won/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/won/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/won/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+				</span>
+			</div>
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Nalgonda'}">
+						<span class="list-inline-item" th:text="${constituency.name}"></span> L-<b><span th:text="${constituency.lead}"></span></b> W-<b><span th:text="${constituency.won}"></b>
+						<br/><span>Lead
+							<a th:href="@{/home/lead/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/lead/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/lead/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/lead/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/lead/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+						<span>Won
+
+							<a th:href="@{/home/won/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/won/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/won/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/won/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/won/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+				</span>
+			</div>
+
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Nizamabad'}">
+						<span class="list-inline-item" th:text="${constituency.name}"></span> L-<b><span th:text="${constituency.lead}"></span></b> W-<b><span th:text="${constituency.won}"></b>
+						<br/><span>Lead
+							<a th:href="@{/home/lead/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/lead/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/lead/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/lead/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/lead/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+						<span>Won
+
+							<a th:href="@{/home/won/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/won/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/won/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/won/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/won/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+				</span>
+			</div>
+
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Ranga Reddy'}">
+						<span class="list-inline-item" th:text="${constituency.name}"></span> L-<b><span th:text="${constituency.lead}"></span></b> W-<b><span th:text="${constituency.won}"></b>
+						<br/><span>Lead
+							<a th:href="@{/home/lead/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/lead/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/lead/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/lead/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/lead/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+						<span>Won
+
+							<a th:href="@{/home/won/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/won/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/won/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/won/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/won/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+				</span>
+			</div>
+
+			<div class="col">
+				<span th:each="constituency: ${home}">
+					<span th:if="${constituency.lastName == 'Warangal'}">
+						<span class="list-inline-item" th:text="${constituency.name}"></span> L-<b><span th:text="${constituency.lead}"></span></b> W-<b><span th:text="${constituency.won}"></b>
+						<br/><span>Lead
+							<a th:href="@{/home/lead/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/lead/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/lead/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/lead/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/lead/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+						<span>Won
+
+							<a th:href="@{/home/won/{id}/INC(id=${constituency.id})}"
+								class="xbtn-sm xbtn-primary">INC</a>
+							<a th:href="@{/home/won/{id}/BRS(id=${constituency.id})}"
+								class="xbtn-sm xbtn-danger">BRS</a>
+							<a th:href="@{/home/won/{id}/BJP(id=${constituency.id})}"
+								class="xbtn-sm xbtn-warning">BJP</a>
+							<a th:href="@{/home/won/{id}/MIM(id=${constituency.id})}"
+								class="xbtn-sm xbtn-success">MIM</a>
+							<a th:href="@{/home/won/{id}/OTH(id=${constituency.id})}"
+								class="xbtn-sm xbtn-secondary">OTH</a>
+						</span>
+					</span>
+				</span>
+			</div>
+		</div>
+
+
+	</div>
+</body>
+
+</html>
