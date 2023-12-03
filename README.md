@@ -1,4 +1,4 @@
-# Spring MVC Tutorial | Spring Boot | Full Course [2021]
-Spring MVC Tutorial | Spring Boot | Full Course [2021] at https://youtu.be/Ku3gsv7_bCc
+# Spring MVC Tutorial | Spring Boot | Themleaf | Bootstrap | Google Sheets
+Demo project Spring MVC Tutorial | Spring Boot | Themleaf | Bootstrap | Google Sheets
 
-Blog tutorial at https://www.javaguides.net/2021/05/spring-boot-crud-tutorial.html
+Crafted to monitor and refresh Telangana's 2023 election outcomes, this hobbyist application is designed for tracking and updating results.
